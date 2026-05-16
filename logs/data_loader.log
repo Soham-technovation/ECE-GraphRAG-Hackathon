@@ -1,0 +1,4 @@
+2026-05-16 16:30:58,911 | INFO | Loaded 6 documents from C:\Users\soham\OneDrive\Desktop\ECE-GraphRAG-Hackathon\data
+2026-05-16 16:30:58,913 | INFO | File-type stats: {'.txt': 4, '.csv': 2}
+2026-05-16 16:30:58,913 | INFO | Dataset stats: {'MIT_OCW': 3, 'NPTEL': 3}
+2026-05-16 16:30:58,913 | INFO | Failed documents: 0

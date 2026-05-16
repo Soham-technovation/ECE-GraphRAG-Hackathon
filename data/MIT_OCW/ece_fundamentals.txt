@@ -1,0 +1,125 @@
+# ECE Fundamentals: Circuits and Devices
+
+## BJTs and Transistor Basics
+
+A Bipolar Junction Transistor (BJT) is a semiconductor device used to amplify or switch electronic signals and power. BJTs consist of three terminals: the Base, Collector, and Emitter. The transistor operates by allowing a small base current to control a much larger collector current, providing amplification.
+
+BJTs have two main configurations: NPN and PNP. In an NPN transistor, the current flows from the collector to the emitter when the base-emitter junction is forward biased. The gain, also called current gain or beta (β), is defined as the ratio of collector current to base current: β = Ic / Ib.
+
+Typical BJT parameters include:
+- Vbe: Base-Emitter forward voltage drop (approximately 0.7V for silicon)
+- Vce: Collector-Emitter voltage
+- Ic: Collector current
+- Beta (β): DC current gain, typically 50-300 for common transistors
+
+## Transistor Amplifiers and Biasing
+
+A transistor amplifier uses a BJT in the active region to amplify weak input signals. Proper biasing is essential for linear amplification. The bias point (Q-point) determines the transistor's operating point on its characteristic curves.
+
+Common biasing configurations include:
+- Fixed base bias: Simple but temperature-sensitive
+- Voltage divider bias: Provides stable Q-point
+- Emitter bias: Good temperature stability
+- Collector feedback bias: Self-regulating
+
+The purpose of biasing is to set the transistor in the active region, where the base-emitter junction is forward biased and the base-collector junction is reverse biased. This allows the transistor to amplify AC signals superimposed on the DC bias point.
+
+## Decoupling Capacitors and Power Distribution
+
+A decoupling capacitor stabilizes supply voltage by filtering noise and providing local transient current near IC power pins. These capacitors are essential components in modern digital and analog circuits.
+
+Decoupling capacitors work by providing a low-impedance path to ground for high-frequency noise on the power supply. They store charge and release it quickly when the supply voltage droops due to transient current demands. Without adequate decoupling, voltage ripple can cause logic errors in digital circuits or signal degradation in analog circuits.
+
+Selection of decoupling capacitor values depends on:
+- Supply voltage
+- Operating frequency
+- Current transient requirements
+- PCB layout and parasitics
+
+Common values are 0.1µF ceramic capacitors for high-frequency noise, combined with larger electrolytic capacitors for low-frequency filtering.
+
+## Kirchhoff's Laws and Circuit Analysis
+
+Kirchhoff's voltage law (KVL) states that the algebraic sum of all voltages around any closed loop is zero. This fundamental principle is derived from energy conservation and is essential for circuit analysis.
+
+Mathematically: ΣV = 0 around any closed loop
+
+Kirchhoff's current law (KCL) states that the algebraic sum of currents entering and leaving a node is zero. This principle is derived from charge conservation.
+
+Mathematically: ΣI_in = ΣI_out at any node
+
+These laws form the foundation for analyzing complex circuits using techniques such as:
+- Mesh analysis (using KVL)
+- Nodal analysis (using KCL)
+- Superposition theorem
+- Thévenin and Norton equivalent circuits
+
+## Filters and Signal Processing
+
+A filter is an electronic circuit that passes signals at certain frequencies while attenuating signals at other frequencies. Filters are essential components in signal conditioning and noise reduction.
+
+Filter types include:
+- Low-pass filter: Attenuates high frequencies
+- High-pass filter: Attenuates low frequencies
+- Band-pass filter: Passes a specific frequency range
+- Band-stop filter: Attenuates a specific frequency range
+
+Common filter topologies include:
+- RC filters: Simple, passive, first-order
+- RL filters: Similar to RC but with inductors
+- RLC filters: Higher-order, more complex response
+- Active filters: Use op-amps for gain and better control
+
+The cutoff frequency (-3dB frequency) determines where attenuation begins. For a first-order RC low-pass filter: fc = 1/(2πRC)
+
+## Amplifier Circuits and Gain
+
+An amplifier circuit takes a small input signal and produces a larger output signal. The gain is the ratio of output to input: Gain = Vout / Vin
+
+Voltage gain can be expressed as:
+- Linear gain (Av)
+- Decibels: Gain(dB) = 20 log10(Av)
+
+Common amplifier configurations include:
+- Common-emitter (CE): High voltage gain, phase reversal
+- Common-collector (CC): Unity voltage gain, high input impedance
+- Common-base (CB): Current gain only, high output impedance
+
+Amplifiers must operate in their linear region to avoid distortion. Output impedance and input impedance are important for circuit design and impedance matching.
+
+## Operational Amplifiers (Op-Amps)
+
+An operational amplifier is a high-gain voltage amplifier with differential inputs and a single output. Ideal op-amps have infinite input impedance, zero output impedance, and infinite gain.
+
+Key characteristics:
+- Gain (open-loop): 10^5 to 10^6
+- Input offset voltage: Typically < 5mV
+- Slew rate: Determines maximum rate of output voltage change
+- Bandwidth: Limited by frequency compensation
+
+Common op-amp circuits include:
+- Inverting amplifier: Gain = -R2/R1
+- Non-inverting amplifier: Gain = 1 + R2/R1
+- Integrator: Output is integral of input
+- Differentiator: Output is derivative of input
+- Comparator: Compares two input voltages
+- Precision rectifier (precision diode)
+
+Op-amps are used extensively in analog signal processing, instrumentation, and control systems.
+
+## Rectification and Power Conversion
+
+Rectification is the process of converting alternating current (AC) to direct current (DC). Rectifier circuits use diodes to block reverse current.
+
+Types of rectifiers:
+- Half-wave rectifier: One diode, 50% duty cycle, high ripple
+- Full-wave rectifier: Two diodes (using center-tap), 100% duty cycle
+- Bridge rectifier: Four diodes, 100% duty cycle, better efficiency
+
+The output of a rectifier contains ripple voltage at the line frequency (60Hz in North America). Capacitive filtering reduces this ripple by storing charge during conduction and releasing it during non-conduction periods.
+
+Rectification efficiency and output voltage depend on:
+- Load resistance
+- Transformer turns ratio
+- Filter capacitor value
+- Diode forward voltage drop (approximately 0.7V for silicon)

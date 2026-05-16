@@ -1,0 +1,3 @@
+BJT is a transistor used in amplifier stages. The current gain beta defines how collector current relates to base current.
+In communication systems, filters process signals to remove unwanted frequency components.
+A circuit may contain resistor and capacitor elements for biasing and frequency response shaping.

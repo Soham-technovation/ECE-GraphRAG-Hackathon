@@ -1,0 +1,12 @@
+2026-05-16 14:24:15,609 | INFO | Loaded 1 documents from C:\Users\soham\OneDrive\Desktop\ECE-GraphRAG-Hackathon\ECEGraphAI\data
+2026-05-16 14:24:15,610 | INFO | File-type stats: {'.txt': 1}
+2026-05-16 14:24:15,611 | INFO | Dataset stats: {'MIT_OCW': 1}
+2026-05-16 14:24:15,611 | INFO | Failed documents: 0
+2026-05-16 14:26:06,572 | INFO | Loaded 1 documents from C:\Users\soham\OneDrive\Desktop\ECE-GraphRAG-Hackathon\ECEGraphAI\data
+2026-05-16 14:26:06,572 | INFO | File-type stats: {'.txt': 1}
+2026-05-16 14:26:06,573 | INFO | Dataset stats: {'MIT_OCW': 1}
+2026-05-16 14:26:06,573 | INFO | Failed documents: 0
+2026-05-16 16:29:23,471 | INFO | Loaded 0 documents from C:\Users\soham\OneDrive\Desktop\ECE-GraphRAG-Hackathon\ECEGraphAI\data
+2026-05-16 16:29:23,473 | INFO | File-type stats: {}
+2026-05-16 16:29:23,474 | INFO | Dataset stats: {}
+2026-05-16 16:29:23,474 | INFO | Failed documents: 0

@@ -1,0 +1,6 @@
+query,relevant_ids,reference
+What is a transistor?,0_0,"A Bipolar Junction Transistor (BJT) is a semiconductor device used to amplify or switch electronic signals and power. BJTs consist of three terminals: the Base, Collector, and Emitter."
+Explain Kirchhoff's voltage law,0_2,"Kirchhoff's voltage law (KVL) states that the algebraic sum of all voltages around any closed loop is zero. This fundamental principle is derived from energy conservation and is essential for circuit analysis."
+What is the purpose of a decoupling capacitor?,0_1,"A decoupling capacitor stabilizes supply voltage by filtering noise and providing local transient current near IC power pins. These capacitors are essential components in modern digital and analog circuits."
+What is the current gain of a transistor?,"0_0,0_1","The gain, also called current gain or beta (β), is defined as the ratio of collector current to base current: β = Ic / Ib. Typical BJT parameters include beta values typically ranging from 50-300 for common transistors."
+How do transistor amplifiers work?,"0_0,0_2","A transistor amplifier uses a BJT in the active region to amplify weak input signals. Proper biasing is essential for linear amplification. The bias point determines the transistor's operating point on its characteristic curves."

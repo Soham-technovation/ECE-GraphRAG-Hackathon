@@ -1,0 +1,9 @@
+2026-05-16 14:26:15,287 | INFO | Documents loaded: 1
+2026-05-16 14:26:15,287 | INFO | Chunks generated: 1
+2026-05-16 14:26:15,287 | INFO | Embeddings created: 1
+2026-05-16 14:26:15,288 | INFO | Nodes created: 11
+2026-05-16 14:26:15,288 | INFO | Edges created: 24
+2026-05-16 14:26:15,288 | INFO | Execution time: 8.720 seconds
+2026-05-16 14:26:15,288 | INFO | Retrieved chunks: 1
+2026-05-16 14:26:15,288 | INFO | Retrieved graph nodes: 11
+2026-05-16 14:26:15,289 | INFO | Estimated token count: 56
