@@ -1,7 +1,5 @@
-# from project root
-./run_all.ps1#!/usr/bin/env python3
-"""
-One-command setup for ECE-GraphRAG-Hackathon.
+#!/usr/bin/env python3
+"""One-command setup for ECE-GraphRAG-Hackathon.
 Initializes all required artifacts: embeddings, graph, spacy model.
 """
 import subprocess
