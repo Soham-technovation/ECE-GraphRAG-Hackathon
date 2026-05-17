@@ -121,6 +121,8 @@ This system provides:
 4. Graph-aware retrieval expands from matched concepts to related documents.
 5. The app compares baseline RAG snippets against GraphRAG results using token count and latency.
 
+![image}(https://github.com/Soham-technovation/ECE-GraphRAG-Hackathon/blob/4243260dbc71c32b9f5f92021d44f211cf1975db/dashboard-overview.png.png)
+
 ```mermaid
 flowchart LR
 	A[Datasets / PDFs] --> B[Preprocess + Chunk]
