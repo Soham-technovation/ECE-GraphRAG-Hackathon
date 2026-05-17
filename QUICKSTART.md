@@ -1,10 +1,12 @@
-# Tiger Graph RAG Quick Start Guide
+# ECEGraphAI
+
+## A Token-Efficient GraphRAG Learning Assistant
 
 **Get ECE-GraphRAG running in 5 minutes.**
 
-## How Tiger Graph RAG Works for You
+## How GraphRAG Works for You
 
-Instead of basic keyword search (which misses concept relationships), **Tiger Graph RAG** intelligently traverses a knowledge graph to find the most relevant context:
+Instead of basic keyword search (which misses concept relationships), **GraphRAG** intelligently traverses a knowledge graph to find the most relevant context:
 
 1. **Your question enters the system** → *"Explain how BJT current gain affects amplifier performance"*
 2. **The graph finds connected concepts** → BJT → current gain → amplifier → stability (graph hops)
@@ -17,7 +19,7 @@ Instead of basic keyword search (which misses concept relationships), **Tiger Gr
 Compares three retrieval pipelines for ECE education:
 1. **LLM-only** — Pure language model (no retrieval, baseline)
 2. **Basic RAG** — Vector-based semantic search + LLM
-3. **Tiger Graph RAG** — Knowledge graph-aware retrieval + LLM ← **Most Efficient**
+3. **GraphRAG** — Knowledge graph-aware retrieval + LLM ← **Most Efficient**
 
 ## Prerequisites
 
@@ -58,7 +60,7 @@ streamlit run app.py
 Then:
 1. Check "Load Demo Query" in the sidebar
 2. Click "Analyze"
-3. Watch the metrics table show Tiger Graph RAG's advantages over Basic RAG
+3. Watch the metrics table show GraphRAG's advantages over Basic RAG
 
 ### Batch Evaluation
 
@@ -77,10 +79,10 @@ The dashboard shows a comparison table:
 | **GraphRAG** | **1900** | **1.9s** | **$0.02** | **Excellent** |
 
 **Key numbers:**
-- ✓ Tiger Graph RAG: **48.6% fewer tokens** than Basic RAG (1900 vs 3700)
-- ✓ Tiger Graph RAG: **29.6% faster** than Basic RAG
-- ✓ Tiger Graph RAG: **50% cheaper** ($0.022 vs $0.044 per query)
-- ✓ Tiger Graph RAG: **Better quality** (BERTScore: 0.91 vs 0.85)
+- ✓ GraphRAG: **48.6% fewer tokens** than Basic RAG (1900 vs 3700)
+- ✓ GraphRAG: **29.6% faster** than Basic RAG
+- ✓ GraphRAG: **50% cheaper** ($0.022 vs $0.044 per query)
+- ✓ GraphRAG: **Better quality** (BERTScore: 0.91 vs 0.85)
 
 ## Environment Variables (Optional)
 

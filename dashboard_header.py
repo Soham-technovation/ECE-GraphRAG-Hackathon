@@ -1,417 +1,227 @@
 import streamlit as st
 
 
-def render_header():
-    """
-    Professional dashboard header for ECEGraphAI with modern AI theme styling.
-    Production-ready component with hackathon-style design.
-    """
-    st.markdown("""
-    <style>
-    /* Main header container */
-    .header-container {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 40px 20px;
-        border-radius: 15px;
-        margin-bottom: 30px;
-        box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+_HEADER_CSS = """
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@500;700;800&display=swap');
+
+:root {
+    --ai-bg-1: #071a24;
+    --ai-bg-2: #0f2b3d;
+    --ai-glass: rgba(255, 255, 255, 0.08);
+    --ai-border: rgba(132, 209, 255, 0.30);
+    --ai-accent: #62d7ff;
+    --ai-accent-2: #5af6bf;
+    --ai-text: #eef8ff;
+    --ai-subtext: #c7deeb;
+}
+
+.ece-header {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1.75rem;
+    padding: 2.1rem 1.25rem;
+    border-radius: 22px;
+    border: 1px solid var(--ai-border);
+    background:
+        radial-gradient(circle at 8% 15%, rgba(90, 246, 191, 0.28), transparent 36%),
+        radial-gradient(circle at 92% 10%, rgba(98, 215, 255, 0.28), transparent 34%),
+        linear-gradient(140deg, var(--ai-bg-1) 0%, var(--ai-bg-2) 45%, #14374f 100%);
+    box-shadow: 0 20px 50px rgba(4, 14, 20, 0.35);
+    animation: ece-fade-in 650ms ease-out both;
+}
+
+.ece-header::before,
+.ece-header::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+}
+
+.ece-header::before {
+    inset: auto -16% -64% auto;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(90, 246, 191, 0.20), transparent 68%);
+}
+
+.ece-header::after {
+    inset: -22% auto auto -12%;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(98, 215, 255, 0.18), transparent 70%);
+}
+
+.ece-shell {
+    position: relative;
+    z-index: 1;
+    max-width: 1020px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.ece-title {
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.3rem, 7vw, 4.1rem);
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+    font-weight: 700;
+    color: var(--ai-text);
+    text-shadow: 0 2px 24px rgba(98, 215, 255, 0.18);
+}
+
+.ece-subtitle {
+    margin: 0.7rem 0 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.28rem);
+    font-weight: 700;
+    color: var(--ai-subtext);
+}
+
+.ece-description {
+    margin: 1.1rem auto 0;
+    max-width: 830px;
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(0.93rem, 1.6vw, 1.04rem);
+    line-height: 1.62;
+    color: #dff0fa;
+}
+
+.ece-icons {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.ece-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.46rem;
+    border-radius: 999px;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid rgba(194, 238, 255, 0.38);
+    background: rgba(8, 22, 30, 0.52);
+    color: #edfbff;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.93rem;
+    font-weight: 700;
+}
+
+.ece-chip-emoji {
+    font-size: 1.05rem;
+    line-height: 1;
+}
+
+.ece-metrics {
+    margin-top: 1.4rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.7rem;
+}
+
+.ece-metric {
+    border-radius: 12px;
+    border: 1px solid rgba(172, 231, 255, 0.30);
+    background: var(--ai-glass);
+    backdrop-filter: blur(7px);
+    padding: 0.76rem 0.68rem;
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(0.84rem, 1.5vw, 1.02rem);
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    color: #f6fdff;
+}
+
+.ece-metric-down {
+    color: #b7e9ff;
+}
+
+.ece-metric-up {
+    color: #9ef8d1;
+}
+
+@keyframes ece-fade-in {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 860px) {
+    .ece-metrics {
+        grid-template-columns: 1fr;
     }
+}
+</style>
+"""
 
-    /* Title styling */
-    .main-title {
-        font-size: 3.5em;
-        font-weight: 900;
-        color: #ffffff;
-        text-align: center;
-        margin: 0;
-        padding: 20px 0 10px 0;
-        letter-spacing: -1px;
-        background: linear-gradient(120deg, #ffffff 0%, #e0e7ff 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
 
-    /* Subtitle styling */
-    .subtitle {
-        font-size: 1.3em;
-        color: #e0e7ff;
-        text-align: center;
-        margin: 10px 0 20px 0;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-    }
+def _render_header_markup(metrics_banner_html: str) -> None:
+    st.markdown(
+        f"""
+        {_HEADER_CSS}
+        <section class="ece-header">
+            <div class="ece-shell">
+                <h1 class="ece-title">ECEGraphAI</h1>
+                <p class="ece-subtitle">A Token-Efficient GraphRAG Learning Assistant</p>
+                <p class="ece-description">
+                    Comparing LLM-Only, Basic RAG, and GraphRAG pipelines for faster, cheaper, and more accurate AI retrieval.
+                </p>
 
-    /* Description styling */
-    .description {
-        font-size: 1em;
-        color: #f0f0f5;
-        text-align: center;
-        margin: 20px 0;
-        line-height: 1.6;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+                <div class="ece-icons">
+                    <span class="ece-chip"><span class="ece-chip-emoji">🧠</span> LLM</span>
+                    <span class="ece-chip"><span class="ece-chip-emoji">📚</span> RAG</span>
+                    <span class="ece-chip"><span class="ece-chip-emoji">🕸️</span> GraphRAG</span>
+                </div>
 
-    /* Icons row */
-    .icons-row {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        margin: 30px 0;
-        flex-wrap: wrap;
-    }
-
-    .icon-item {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .icon-emoji {
-        font-size: 2.5em;
-        line-height: 1;
-    }
-
-    .icon-label {
-        font-size: 0.95em;
-        color: #e0e7ff;
-        font-weight: 600;
-    }
-
-    /* Metrics banner */
-    .metrics-banner {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 12px;
-        padding: 25px;
-        margin: 25px 0 0 0;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
-    }
-
-    .metric-item {
-        text-align: center;
-        padding: 15px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-        border-left: 3px solid #8dd3f0;
-        transition: all 0.3s ease;
-    }
-
-    .metric-item:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: translateY(-2px);
-    }
-
-    .metric-value {
-        font-size: 1.8em;
-        font-weight: 900;
-        color: #8dd3f0;
-        margin: 10px 0 5px 0;
-    }
-
-    .metric-label {
-        font-size: 0.85em;
-        color: #e0e7ff;
-        font-weight: 600;
-        margin: 0;
-    }
-
-    .metric-icon {
-        font-size: 1.5em;
-        margin-bottom: 10px;
-    }
-
-    /* Separator */
-    .header-divider {
-        height: 2px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-        margin: 25px 0 0 0;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .main-title {
-            font-size: 2.5em;
-        }
-        .subtitle {
-            font-size: 1.1em;
-        }
-        .icons-row {
-            gap: 20px;
-        }
-        .metrics-banner {
-            grid-template-columns: 1fr;
-        }
-    }
-    </style>
-
-    <div class="header-container">
-        <div class="main-title">ECEGraphAI</div>
-        <div class="subtitle">A Token-Efficient GraphRAG Learning Assistant</div>
-
-        <div class="description">
-            Comparing <strong>LLM-Only</strong>, <strong>Basic RAG</strong>, and <strong>GraphRAG</strong> pipelines
-            for faster, cheaper, and more accurate AI retrieval.
-        </div>
-
-        <div class="icons-row">
-            <div class="icon-item">
-                <div class="icon-emoji">🧠</div>
-                <div class="icon-label">LLM-Only</div>
+                <div class="ece-metrics">
+                    {metrics_banner_html}
+                </div>
             </div>
-            <div class="icon-item">
-                <div class="icon-emoji">📚</div>
-                <div class="icon-label">Basic RAG</div>
-            </div>
-            <div class="icon-item">
-                <div class="icon-emoji">🕸️</div>
-                <div class="icon-label">GraphRAG</div>
-            </div>
-        </div>
-
-        <div class="metrics-banner">
-            <div class="metric-item">
-                <div class="metric-icon">⬇️</div>
-                <div class="metric-value">47%</div>
-                <div class="metric-label">Token Reduction</div>
-            </div>
-            <div class="metric-item">
-                <div class="metric-icon">💰</div>
-                <div class="metric-value">Lower Cost</div>
-                <div class="metric-label">Cost Efficient</div>
-            </div>
-            <div class="metric-item">
-                <div class="metric-icon">⬆️</div>
-                <div class="metric-value">Better Accuracy</div>
-                <div class="metric-label">Quality Maintained</div>
-            </div>
-        </div>
-        <div class="header-divider"></div>
-    </div>
-    """, unsafe_allow_html=True)
+        </section>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
-def render_header_with_stats(token_reduction: float = None, cost_reduction: float = None, accuracy_maintained: bool = None):
-    """
-    Professional dashboard header with dynamic stats.
-    Use this version when you have real metrics from pipeline runs.
+def render_header() -> None:
+    """Render the professional static dashboard header."""
+    _render_header_markup(
+        """
+        <div class="ece-metric ece-metric-down">↓ 47% Token Reduction</div>
+        <div class="ece-metric ece-metric-down">↓ Lower Cost</div>
+        <div class="ece-metric ece-metric-up">↑ Better Accuracy</div>
+        """
+    )
 
-    Args:
-        token_reduction: Percentage token reduction (0-100)
-        cost_reduction: Percentage cost reduction (0-100)
-        accuracy_maintained: Boolean indicating if quality is maintained
-    """
-    st.markdown("""
-    <style>
-    /* Main header container */
-    .header-container {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 40px 20px;
-        border-radius: 15px;
-        margin-bottom: 30px;
-        box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
-    }
 
-    /* Title styling */
-    .main-title {
-        font-size: 3.5em;
-        font-weight: 900;
-        color: #ffffff;
-        text-align: center;
-        margin: 0;
-        padding: 20px 0 10px 0;
-        letter-spacing: -1px;
-        background: linear-gradient(120deg, #ffffff 0%, #e0e7ff 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+def render_header_with_stats(
+    token_reduction: float | None = None,
+    cost_reduction: float | None = None,
+    accuracy_maintained: bool | None = None,
+) -> None:
+    """Render the same header while allowing run-specific metric text."""
+    token_text = f"↓ {token_reduction:.0f}% Token Reduction" if token_reduction is not None else "↓ 47% Token Reduction"
 
-    /* Subtitle styling */
-    .subtitle {
-        font-size: 1.3em;
-        color: #e0e7ff;
-        text-align: center;
-        margin: 10px 0 20px 0;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-    }
+    if cost_reduction is not None:
+        cost_text = f"↓ {cost_reduction:.0f}% Lower Cost"
+    else:
+        cost_text = "↓ Lower Cost"
 
-    /* Description styling */
-    .description {
-        font-size: 1em;
-        color: #f0f0f5;
-        text-align: center;
-        margin: 20px 0;
-        line-height: 1.6;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+    if accuracy_maintained is True:
+        accuracy_text = "↑ Better Accuracy"
+    elif accuracy_maintained is False:
+        accuracy_text = "→ Accuracy in Check"
+    else:
+        accuracy_text = "↑ Better Accuracy"
 
-    /* Icons row */
-    .icons-row {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        margin: 30px 0;
-        flex-wrap: wrap;
-    }
-
-    .icon-item {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .icon-emoji {
-        font-size: 2.5em;
-        line-height: 1;
-    }
-
-    .icon-label {
-        font-size: 0.95em;
-        color: #e0e7ff;
-        font-weight: 600;
-    }
-
-    /* Metrics banner */
-    .metrics-banner {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 12px;
-        padding: 25px;
-        margin: 25px 0 0 0;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
-    }
-
-    .metric-item {
-        text-align: center;
-        padding: 15px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-        border-left: 3px solid #8dd3f0;
-        transition: all 0.3s ease;
-    }
-
-    .metric-item:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: translateY(-2px);
-    }
-
-    .metric-value {
-        font-size: 1.8em;
-        font-weight: 900;
-        color: #8dd3f0;
-        margin: 10px 0 5px 0;
-    }
-
-    .metric-label {
-        font-size: 0.85em;
-        color: #e0e7ff;
-        font-weight: 600;
-        margin: 0;
-    }
-
-    .metric-icon {
-        font-size: 1.5em;
-        margin-bottom: 10px;
-    }
-
-    /* Separator */
-    .header-divider {
-        height: 2px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-        margin: 25px 0 0 0;
-    }
-
-    @media (max-width: 768px) {
-        .main-title {
-            font-size: 2.5em;
-        }
-        .subtitle {
-            font-size: 1.1em;
-        }
-        .icons-row {
-            gap: 20px;
-        }
-        .metrics-banner {
-            grid-template-columns: 1fr;
-        }
-    }
-    </style>
-
-    <div class="header-container">
-        <div class="main-title">ECEGraphAI</div>
-        <div class="subtitle">A Token-Efficient GraphRAG Learning Assistant</div>
-
-        <div class="description">
-            Comparing <strong>LLM-Only</strong>, <strong>Basic RAG</strong>, and <strong>GraphRAG</strong> pipelines
-            for faster, cheaper, and more accurate AI retrieval.
-        </div>
-
-        <div class="icons-row">
-            <div class="icon-item">
-                <div class="icon-emoji">🧠</div>
-                <div class="icon-label">LLM-Only</div>
-            </div>
-            <div class="icon-item">
-                <div class="icon-emoji">📚</div>
-                <div class="icon-label">Basic RAG</div>
-            </div>
-            <div class="icon-item">
-                <div class="icon-emoji">🕸️</div>
-                <div class="icon-label">GraphRAG</div>
-            </div>
-        </div>
-
-        <div class="metrics-banner">
-    """, unsafe_allow_html=True)
-
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        st.markdown(f"""
-        <div class="metric-item">
-            <div class="metric-icon">⬇️</div>
-            <div class="metric-value">{token_reduction:.0f}%</div>
-            <div class="metric-label">Token Reduction</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col2:
-        st.markdown(f"""
-        <div class="metric-item">
-            <div class="metric-icon">💰</div>
-            <div class="metric-value">{cost_reduction:.0f}%</div>
-            <div class="metric-label">Cost Reduction</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col3:
-        status = "✓ Yes" if accuracy_maintained else "⚠️ Check"
-        st.markdown(f"""
-        <div class="metric-item">
-            <div class="metric-icon">⬆️</div>
-            <div class="metric-value">{status}</div>
-            <div class="metric-label">Quality Maintained</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    st.markdown("""
-        </div>
-        <div class="header-divider"></div>
-    </div>
-    """, unsafe_allow_html=True)
+    _render_header_markup(
+        f"""
+        <div class="ece-metric ece-metric-down">{token_text}</div>
+        <div class="ece-metric ece-metric-down">{cost_text}</div>
+        <div class="ece-metric ece-metric-up">{accuracy_text}</div>
+        """
+    )

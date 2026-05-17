@@ -1,6 +1,8 @@
-# 🎯 ECE-GraphRAG: Tiger Graph RAG-Powered Learning Assistant
+# ECEGraphAI
 
-## 📊 User Journey with Tiger Graph RAG
+## A Token-Efficient GraphRAG Learning Assistant
+
+## 📊 User Journey with GraphRAG
 
 **How your question flows through the system:**
 
@@ -11,7 +13,7 @@
 └────────────────────────┬────────────────────────────────────────┘
                          │
 ┌────────────────────────▼────────────────────────────────────────┐
-│ 2. DOCUMENTS INDEXED (Tiger Graph RAG)                           │
+│ 2. DOCUMENTS INDEXED (GraphRAG)                                  │
 │    • MIT OCW & NPTEL materials chunked & embedded               │
 │    • Entities extracted: BJT, current gain, amplifier           │
 └────────────────────────┬────────────────────────────────────────┘
@@ -23,15 +25,15 @@
 └────────────────────────┬────────────────────────────────────────┘
                          │
 ┌────────────────────────▼────────────────────────────────────────┐
-│ 4. INTELLIGENT RETRIEVAL (Tiger Graph vs Basic RAG)             │
-│    • Tiger Graph RAG: Retrieves focused context via graph hops  │
+│ 4. INTELLIGENT RETRIEVAL (GraphRAG vs Basic RAG)                │
+│    • GraphRAG: Retrieves focused context via graph hops         │
 │    • Basic RAG: Keyword/vector search only                      │
 │    • Result: 48.6% fewer tokens, better context relevance      │
 └────────────────────────┬────────────────────────────────────────┘
                          │
 ┌────────────────────────▼────────────────────────────────────────┐
 │ 5. LLM GENERATES ANSWER                                          │
-│    • Tiger GraphRAG: 1900 tokens (concise, high-quality)        │
+│    • GraphRAG: 1900 tokens (concise, high-quality)              │
 │    • Basic RAG: 3700 tokens (redundant context)                 │
 │    • Quality: BERTScore 0.91 vs 0.85 (better semantics)        │
 └────────────────────────┬────────────────────────────────────────┘
@@ -76,7 +78,7 @@ Or run everything in one command on Windows PowerShell:
 ./run_all.ps1
 ```
 
-Then open the Streamlit dashboard, check "Load Demo Query", and click "Analyze" to see Tiger Graph RAG in action.
+Then open the Streamlit dashboard, check "Load Demo Query", and click "Analyze" to see GraphRAG in action.
 
 ---
 
@@ -95,7 +97,7 @@ This system provides:
 1. **Three pipelines**
 	- **LLM-only** (no retrieval context, worst-case baseline)
 	- **Basic RAG** (vector retrieval + answer generation)
-	- **Tiger Graph RAG** (graph-aware retrieval + answer generation)
+	- **GraphRAG** (graph-aware retrieval + answer generation)
 2. **Scalable architecture**
 	- **Phase 1**: Support 2M+ tokens of text
 	- **Phase 2**: 100M+ tokens with optimized retrieval
@@ -152,12 +154,12 @@ flowchart LR
 
 ## Answer Accuracy
 
-Token reduction alone is not the sole metric. Tiger Graph RAG answers must stay competitive with the Basic RAG baseline, so this project evaluates answer quality using two complementary approaches:
+Token reduction alone is not the sole metric. GraphRAG answers must stay competitive with the Basic RAG baseline, so this project evaluates answer quality using two complementary approaches:
 
 1. LLM-as-a-Judge: a hosted model grades each answer as PASS or FAIL.
 2. BERTScore: measures semantic similarity to reference answers.
 
-> Note: Tiger Graph RAG requires iterative tuning to reach strong answer accuracy. The key levers are chunking strategy, chunk size, hop depth, model choice, and prompt design. See the [Tiger Graph RAG Tuning Guide](https://github.com/tigergraph/graphrag#tuning-guideline) for practical parameter guidance.
+> Note: GraphRAG requires iterative tuning to reach strong answer accuracy. The key levers are chunking strategy, chunk size, hop depth, model choice, and prompt design. See the [GraphRAG Tuning Guide](https://github.com/tigergraph/graphrag#tuning-guideline) for practical parameter guidance.
 
 This means the project is optimized to show:
 
@@ -176,7 +178,7 @@ This means the project is optimized to show:
 ## 📚 Documentation
 
 - **[QUICKSTART.md](QUICKSTART.md)** — 5-minute walkthrough
-- **[RESULTS.md](RESULTS.md)** — Benchmark results showing Tiger Graph RAG efficiency
+- **[RESULTS.md](RESULTS.md)** — Benchmark results showing GraphRAG efficiency
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** — How GraphRAG achieves token efficiency
 - **[.env.example](.env.example)** — Configuration template
 
@@ -190,7 +192,7 @@ streamlit run app.py
 
 This launches the **three-pipeline comparison dashboard** where:
 1. Load a demo query (or write your own)
-2. All 3 pipelines run side-by-side: LLM-only, Basic RAG, Tiger Graph RAG
+2. All 3 pipelines run side-by-side: LLM-only, Basic RAG, GraphRAG
 3. See token count, latency, cost, and quality metrics live
 
 ### Batch Evaluation
@@ -213,9 +215,9 @@ This installs dependencies, downloads spacy models, and generates embeddings + g
 
 ## System Performance Metrics
 
-This project measures key signals for Tiger Graph RAG efficiency:
+This project measures key signals for GraphRAG efficiency:
 
-- **Token Reduction (30%)**: The `eval/run_evaluation.py` script computes token counts for the baseline RAG retrieval context and the Tiger Graph RAG context and reports per-query and aggregate token reduction percentages.
+- **Token Reduction (30%)**: The `eval/run_evaluation.py` script computes token counts for the baseline RAG retrieval context and the GraphRAG context and reports per-query and aggregate token reduction percentages.
 - **Answer Accuracy (30%)**: The harness supports supplying `reference` answers and computes BERTScore F1 and LLM-as-a-Judge PASS/FAIL for all three pipelines.
 - **Performance (20%)**: The script measures retrieval latency for each query and reports average latency reduction percentage.
 - **Quality (20%)**: Demonstrates consistent high-quality answers while reducing token usage.
