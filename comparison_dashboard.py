@@ -11,6 +11,7 @@ import streamlit as st
 from ECEGraphAI.metrics import percentage_reduction
 from ECEGraphAI.pipelines import PipelineRunner
 from demo_config import DEMO_QUERIES, METRIC_THRESHOLDS, SUCCESS_CRITERIA
+from dashboard_header import render_header, render_header_with_stats
 
 try:
     from bert_score import score as bert_score
@@ -90,12 +91,8 @@ def safe_bertscore(candidate: str, reference: str, rescale: bool):
 
 
 def main():
-    st.set_page_config(page_title="Tiger Graph RAG: Token-Efficient Learning Assistant", layout="wide")
-    st.title("🎯 Tiger Graph RAG: Token-Efficient Learning Assistant")
-    st.markdown("""
-    **Tiger Graph RAG User Journey:** Enter a question → The knowledge graph finds connected concepts
-    → Smart retrieval fetches relevant context → Answer generated with **48.6% fewer tokens** than Basic RAG.
-    """)
+    st.set_page_config(page_title="ECEGraphAI: Token-Efficient GraphRAG Learning Assistant", layout="wide")
+    render_header()
 
     # Demo Mode
     with st.sidebar:
@@ -201,13 +198,21 @@ def main():
 
     # Key metrics display
     st.markdown("---")
-    st.subheader("📊 Efficiency Metrics (The Judge Story)")
 
     token_reduction = percentage_reduction(rag.total_tokens, graph.total_tokens)
-    latency_reduction = percentage_reduction(rag.latency_seconds, graph.latency_seconds)
     cost_reduction = percentage_reduction(rag.estimated_cost_usd, graph.estimated_cost_usd)
+    quality_maintained = (run_accuracy and reference.strip())
+
+    render_header_with_stats(
+        token_reduction=token_reduction,
+        cost_reduction=cost_reduction,
+        accuracy_maintained=quality_maintained
+    )
+
+    st.subheader("📊 Detailed Efficiency Metrics")
 
     col1, col2, col3, col4 = st.columns(4)
+    latency_reduction = percentage_reduction(rag.latency_seconds, graph.latency_seconds)
     with col1:
         st.metric("📌 Tokens (RAG vs GraphRAG)", f"{rag.total_tokens} → {graph.total_tokens}",
                  f"{token_reduction:.1f}% saved")
@@ -218,8 +223,8 @@ def main():
         st.metric("💰 Cost (RAG vs GraphRAG)", f"${rag.estimated_cost_usd:.4f} → ${graph.estimated_cost_usd:.4f}",
                  f"{cost_reduction:.1f}% cheaper")
     with col4:
-        quality_maintained = "✓ Yes" if (run_accuracy and reference.strip()) else "ℹ️ Pending"
-        st.metric("✅ Quality Maintained?", quality_maintained, "See accuracy below")
+        quality_status = "✓ Yes" if quality_maintained else "ℹ️ Pending"
+        st.metric("✅ Quality Maintained?", quality_status, "See accuracy below")
 
     # Comparison table
     st.markdown("---")
