@@ -122,7 +122,11 @@ This system provides:
 5. The app compares baseline RAG snippets against GraphRAG results using token count and latency.
 
 ![image](https://github.com/Soham-technovation/ECE-GraphRAG-Hackathon/blob/4243260dbc71c32b9f5f92021d44f211cf1975db/dashboard-overview.png.png)
+## 🎬 Live Demo
 
+🚀 Want to see ECEGraphAI in action?  
+
+👉 **[Click here to watch the complete demo video](https://youtu.be/3lJ62zJVyiw?si=tpv9jBk2Mw_7TjU5)**
 ```mermaid
 flowchart LR
 	A[Datasets / PDFs] --> B[Preprocess + Chunk]
