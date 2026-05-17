@@ -127,6 +127,12 @@ This system provides:
 🚀 Want to see ECEGraphAI in action?  
 
 👉 **[Click here to watch the complete demo video](https://youtu.be/3lJ62zJVyiw?si=tpv9jBk2Mw_7TjU5)**
+
+
+
+## 🌐 Live Application
+
+👉 **[Click here to go through the ECEGraphAI application](https://soham-technovation-ece-graphrag-hackathon-app-g0peip.streamlit.app/)**
 ```mermaid
 flowchart LR
 	A[Datasets / PDFs] --> B[Preprocess + Chunk]
